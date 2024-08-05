@@ -4,7 +4,7 @@ export const EDUCATIONS = [
       link: '/education/smkn-1-jenangan'
     },
     {
-      name: 'SMPN 1 KAUMAN',
+      name: 'SMPN 2 KAUMAN',
       link: '/education/smpn-1-kauman'
     },
     {

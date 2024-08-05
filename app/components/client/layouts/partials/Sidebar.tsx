@@ -4,9 +4,12 @@ import Link from 'next/link'
 import React from 'react'
 import { EDUCATIONS } from '@/utils/education'
 import { WORK_EXPERIENCES } from '@/utils/workExperience'
+import { usePathname } from 'next/navigation';
 
 const Sidebar = () => {
   const [active, setActive] = React.useState<number | null>(null)
+
+  const pathname = usePathname();
 
   return (
     <div className={`col-span-2`}>
@@ -21,7 +24,7 @@ const Sidebar = () => {
             <h2 className='text-xl font-bold text-black border-b border-black mb-3'>Work Experienxe</h2>
             {WORK_EXPERIENCES.map((work, index) => (
               <div key={index} className='my-2 group'>
-                <div className={`p-2 block mb-1 ${active == index ? 'bg-info text-white' : 'bg-success text-black'} rounded-md hover:pl-4 hover:duration-300 duration-300 hover:bg-info hover:text-white group font-semibold cursor-pointer`} onClick={() => setActive(index)}>
+                <div className={`p-2 block mb-1 ${active == index ? 'bg-info text-white pl-4' : 'bg-success text-black'} rounded-md group-hover:pl-4 hover:duration-300 duration-300 group-hover:bg-info group-hover:text-white group font-semibold cursor-pointer`} onClick={() => setActive(index)}>
                   {work.name}
                 </div>
                 <div className={`bg-info p-3 rounded-md text-sm ${active == index ? 'block' : 'hidden group-hover:block'}`}>
@@ -43,8 +46,8 @@ const Sidebar = () => {
           <div className='mb-5'>
             <h2 className='text-xl font-bold text-black border-b border-black mb-3'>Education</h2>
             {EDUCATIONS.map((menu, index) => (
-              <Link href={menu.link} key={index} className='p-2 block bg-success my-2 rounded-md hover:pl-4 hover:duration-300 duration-300 hover:bg-info hover:text-white group font-semibold cursor-pointer'>
-                <span className='text-black group-hover:text-white'>{menu.name}</span>
+              <Link href={menu.link} key={index} className={`p-2 block my-2 rounded-md ${menu.link == pathname ? 'pl-4 duration-300 bg-info text-white' : 'bg-success hover:pl-4 hover:duration-300 duration-300 hover:bg-info hover:text-white'}  group font-semibold cursor-pointer`}>
+                <span className={`${menu.link == pathname ? 'text-white' : 'text-black group-hover:text-white'}`}>{menu.name}</span>
               </Link>
             ))}
           </div>
